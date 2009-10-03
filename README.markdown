@@ -24,6 +24,22 @@ It has been tested on Mac OS X 10.6.1 and is currently under development.
 Usage
 -----
 
+Show help:
+	bash install_mac_dev_suite.sh -h
+	
+With all options:
+	bash install_mac_dev_suite.sh -p password \
+	--bash-profile location/of/file/with/additional/bash/commands \
+	--copy-scripts locations/of/scripts/to/copy/to/~/scripts \
+	--git-clones locations/of/script/to/load/git/repos \
+	--mysql-backup location/of/gz/mysql/backup/which/will/be/restored
+
+Skip the unwanted parts:
+	bash install_mac_dev_suite.sh -p password \
+	--skip-emacs \
+	--skip-mysql \
+	--skip-apache
+
 What is Installed
 -----------------
 
