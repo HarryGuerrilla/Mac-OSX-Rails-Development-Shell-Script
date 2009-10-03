@@ -410,19 +410,6 @@ fi
 if [ $GIT_CLONES ] ; then
     bash $GIT_CLONES
 fi
-#cd $HOME/Sites
-#git clone ssh://tonypelaez@75.119.207.114/~/git/ladbstaskmanager.git ladbstaskmanager
-#git clone ssh://tonypelaez@75.119.207.114/~/git/lavalleytennis.git lavalleytennis
-#git clone ssh://tonypelaez@75.119.207.114/~/git/lottery.git lottery
-#git clone ssh://tonypelaez@75.119.207.114/~/git/shadowrun.git shadowrun
-#git clone ssh://tonypelaez@75.119.207.114/~/git/tonypelaez.git tonypelaez
-#git clone ssh://tonypelaez@75.119.207.114/~/git/tonypelaez_blog.git tonypelaez_blog
-#git clone ssh://tonypelaez@75.119.207.114/~/git/warhammer.git warhammer
-#git clone git@github.com:HarryGuerilla/rails_templates.git rails_templates
-#git clone git@github.com:HarryGuerilla/HOA-community-site-based-on-el-dorado.git langdonvillage
-#git clone git@github.com:HarryGuerilla/damn-layout-generators.git damn_layout_generators
-#git svn clone http://code.tonypelaez.com/thrill_spree/trunk/ thrillmerchants
-#cd $ORIG_PWD
 
 
 # Cleanup
