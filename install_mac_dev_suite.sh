@@ -387,9 +387,13 @@ if [ "$SKIP_MYSQL" -eq "1" ] ; then
 else
     echo $SUDO_PASS | sudo -S port install mysql5-server-devel
     echo $SUDO_PASS | sudo -S launchctl load -w /Library/LaunchDaemons/org.macports.mysql5.plist
-    echo $SUDO_PASS | sudo -S alias mysqladmin='mysqladmin5' >> $HOME/.bash_profile
-    echo $SUDO_PASS | sudo -S alias mysqlstart='sudo launchctl load -w /Library/LaunchDaemons/org.macports.mysql5.plist' >> $HOME/.bash_profile
-    echo $SUDO_PASS | sudo -S alias mysqlstop='sudo launchctl unload -w /Library/LaunchDaemons/org.macports.mysql5.plist' >> $HOME/.bash_profile
+	printf "%s\n%s\n\n%s\n%s\n%s\n" \
+	"# MySQL Config" \
+	"# ============" \
+	"alias mysqladmin='mysqladmin5'" \
+	"alias mysqlstart='sudo launchctl load -w /Library/LaunchDaemons/org.macports.mysql5.plist'" \
+	"alias mysqlstop='sudo launchctl unload -w /Library/LaunchDaemons/org.macports.mysql5.plist'" \
+	>> $HOME/.bash_profile
     source $HOME/.bash_profile
     cd /opt/local/bin
     echo $SUDO_PASS | sudo -S ln -s ../lib/mysql5/bin/mysql mysql
