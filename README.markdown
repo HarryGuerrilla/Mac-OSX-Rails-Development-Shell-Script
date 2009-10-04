@@ -247,4 +247,13 @@ What is Installed
 	GNU Emacs comes with ABSOLUTELY NO WARRANTY.
 	You may redistribute copies of Emacs
 	under the terms of the GNU General Public License.
-	For more information about these matters, see the file named COPYING.
+	For more information about these matters, see the file named
+	COPYING.
+
+
+Issues
+------
+There might be some issues when installing apache and passenger with
+macports, especially when using the passenger preference pane.  Please
+see the passenger preference pane README for instructions on
+installing it with the macports version of apache2.
