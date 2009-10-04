@@ -353,7 +353,7 @@ source $HOME/.bash_profile
 rvm install 1.9.1
 rvm install jruby
 rvm install ree
-echo $SUDO_PASS | sudo -S export APXS2=/opt/apache2/bin/apxs
+export APXS2=/opt/apache2/bin/apxs
 echo $SUDO_PASS | sudo -S gem install passenger
 echo $SUDO_PASS | sudo -S passenger-install-apache2-module
 echo $SUDO_PASS | sudo -S touch /opt/local/apache2/conf/extra/passenger.conf
