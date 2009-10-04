@@ -15,6 +15,7 @@
 declare -rx SCRIPT=${0##*/}                  # Name of Script
 
 declare -x ORIG_PWD=$PWD                     # Starting Directory
+declare -x ORIG_USER=$USER
 declare SUDO_PASS	                     # Will hold sudo password
 # declare BACKUP_DATE	                     # Will hold folder name of latest Backup
 
@@ -272,7 +273,7 @@ if [ "$SKIP_APACHE" -eq "1" ]; then
 else
     echo $SUDO_PASS | sudo -S  port install apache2
     echo $SUDO_PASS | sudo -S launchctl load -w /Library/LaunchDaemons/org.macports.apache2.plist
-    echo export PATH=/opt/local/apache2/bin:\$PATH >> $HOME/.bash_profile
+    echo export "PATH=/opt/local/apache2/bin:\$PATH" >> $HOME/.bash_profile
     source $HOME/.bash_profile
     echo $SUDO_PASS | sudo -S apachectl start
     printf "\n%s\n" ":: Installed Macports Apache 2 ::"
@@ -353,20 +354,19 @@ source $HOME/.bash_profile
 rvm install 1.9.1
 rvm install jruby
 rvm install ree
-export APXS2=/opt/apache2/bin/apxs
+
+# Install Passenger for Easy Rails Development
 echo $SUDO_PASS | sudo -S gem install passenger
-echo $SUDO_PASS | sudo -S passenger-install-apache2-module
-echo $SUDO_PASS | sudo -S touch /opt/local/apache2/conf/extra/passenger.conf
-# file will not accept changes unless the permissions are changed
-echo $SUDO_PASS | sudo -S chmod g+rw /opt/local/apache2/conf/extra/passenger.conf
-echo $SUDO_PASS | sudo -S "LoadModule passenger_module /opt/local/lib/ruby/gems/1.8/gems/passenger-2.2.5/ext/apache2/mod_passenger.so" >> /opt/local/apache2/conf/extra/passenger.conf
-echo $SUDO_PASS | sudo -S "PassengerRoot /opt/local/lib/ruby/gems/1.8/gems/passenger-2.2.5" >> /opt/local/apache2/conf/extra/passenger.conf
-echo $SUDO_PASS | sudo -S "PassengerRuby /opt/local/bin/ruby" >> /opt/local/apache2/conf/extra/passenger.conf
-echo $SUDO_PASS | sudo -S chmod g+rw /opt/local/apache2/conf/httpd.conf
-echo $SUDO_PASS | sudo -S echo Include /opt/local/apache2/conf/extra/passenger.conf >> /opt/local/apache2/conf/httpd.conf
-echo $SUDO_PASS | sudo -S apachectl restart
-echo $SUDO_PASS | sudo -S chmod g-w /opt/local/apache2/conf/extra/passenger.conf
-echo $SUDO_PASS | sudo -S chmod g-w /opt/local/apache2/conf/httpd.conf
+echo $SUDO_PASS | sudo -S su
+export APXS2=/opt/apache2/bin/apxs
+passenger-install-apache2-module
+touch /opt/local/apache2/conf/extra/passenger.conf
+echo "LoadModule passenger_module /opt/local/lib/ruby/gems/1.8/gems/passenger-2.2.5/ext/apache2/mod_passenger.so" >> /opt/local/apache2/conf/extra/passenger.conf
+echo "PassengerRoot /opt/local/lib/ruby/gems/1.8/gems/passenger-2.2.5" >> /opt/local/apache2/conf/extra/passenger.conf
+echo "PassengerRuby /opt/local/bin/ruby" >> /opt/local/apache2/conf/extra/passenger.conf
+echo "Include /opt/local/apache2/conf/extra/passenger.conf" >> /opt/local/apache2/conf/httpd.conf
+apachectl restart
+su - $ORIG_USER
 
 echo $SUDO_PASS | sudo -S gem install --include-dependencies authlogic autotest-rails aws-s3 calendar_date_select \
 capistrano fastri ferret haml-edge hoe hpricot liquid mislav-will_paginate \
