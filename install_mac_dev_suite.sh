@@ -358,7 +358,7 @@ rvm install ree
 # Install Passenger for Easy Rails Development
 echo $SUDO_PASS | sudo -S gem install passenger
 echo $SUDO_PASS | sudo -S su
-export APXS2=/opt/apache2/bin/apxs
+export APXS2=/opt/local/apache2/bin/apxs
 passenger-install-apache2-module
 touch /opt/local/apache2/conf/extra/passenger.conf
 echo "LoadModule passenger_module /opt/local/lib/ruby/gems/1.8/gems/passenger-2.2.5/ext/apache2/mod_passenger.so" >> /opt/local/apache2/conf/extra/passenger.conf
