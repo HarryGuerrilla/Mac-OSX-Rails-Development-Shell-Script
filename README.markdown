@@ -3,7 +3,7 @@ Mac OS X Development Setup
 
 This shell script comes with ABSOLUTELY NO WARRANTY.
 
-v.0.0.1 updated on 09/28/09                           
+v.0.0.11 updated on 12/05/09
 by Tony Pelaez http://tonypelaez.com
 
 Synopsis
