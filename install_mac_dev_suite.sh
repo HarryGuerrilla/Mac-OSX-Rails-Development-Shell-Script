@@ -178,7 +178,7 @@ printf "%s\n%s\n\n%s\n\n%s\n%s\n%s\n%s\n%s\n%s\n\n%s\n%s\n\n" \
 \
 "# Terminal Prompt & Colors" \
 "export PS1='\n\$(git branch &>/dev/null; if [ \$? -eq 0 ]; then \\" \
-"echo \"\[\033[0;35m\]br:\[\e[32;40m\]\$(git branch | grep ^*|sed s/\*\ //) \[\033[0;33m\]\W\"; else " \
+"echo \"\[\033[0;35m\]br:\[\e[32;40m\]\$(git branch | grep ^\*|sed s/\*\ //) \[\033[0;33m\]\W\"; else " \
 "echo \"\[\033[0;36m\]\u \[\033[0;33m\]\w\";fi)\[\033[00m\] \\$ '" \
 "export CLICOLOR=1" \
 "export LSCOLORS=ExFxCxDxBxegedabagacex" \
